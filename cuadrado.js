@@ -1,78 +1,86 @@
 window.onload = function () {
-  const canvas = document.getElementById("canvas"); //obtengo el canva con su id
-  const gl = canvas.getContext("webgl"); //obtenemos el contexto de renderizado WebGL para renderizar gráficos
+  // Espera a que se cargue la ventana para ejecutar este código
+  const canvas = document.getElementById("canvas"); // Obtiene el elemento canvas del documento HTML
+  const gl = canvas.getContext("webgl"); // Obtiene el contexto de renderizado WebGL del canvas
 
   if (!gl) {
-    //Verificamos que el navegador soporte WebGL
+    // Verifica si el navegador soporta WebGL
     console.error("No soporta WebGL.");
-    return;
+    return; // Si no es soportado, se detiene la ejecución del código
   }
 
-  const vsSource = `
-                attribute vec2 aPosition;
-                void main() {
-                    gl_Position = vec4(aPosition, 0.0, 1.0);
-                }
-            `;
+  const vsSource = ` // Define el código fuente del shader de vértices
+    attribute vec2 aPosition; // Atributo que representa la posición de los vértices
+    void main() { // Función principal del shader de vértices
+        gl_Position = vec4(aPosition, 0.0, 1.0); // Establece la posición del vértice en el espacio homogéneo
+    }
+  `;
 
-  const fsSource = `
-                precision mediump float;
-                void main() {
-                    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); // color del cuadrado en este caso es rojo
-                }
-            `;
+  const fsSource = ` // Define el código fuente del shader de fragmentos
+    precision mediump float; // Establece la precisión de los cálculos en punto flotante
+    void main() { // Función principal del shader de fragmentos
+        gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); // Establece el color del fragmento (en este caso, rojo)
+    }
+  `;
 
   function compileShader(gl, source, type) {
-    const shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
+    // Función para compilar un shader
+    const shader = gl.createShader(type); // Crea un nuevo shader del tipo especificado
+    gl.shaderSource(shader, source); // Establece el código fuente del shader
+    gl.compileShader(shader); // Compila el shader
 
     if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      // Verifica si la compilación fue exitosa
       console.error(
+        // Si hubo un error en la compilación, muestra un mensaje de error
         "An error occurred compiling the shaders: " +
           gl.getShaderInfoLog(shader)
       );
-      gl.deconsteShader(shader);
-      return null;
+      gl.deleteShader(shader); // Elimina el shader
+      return null; // Retorna null para indicar que hubo un error
     }
 
-    return shader;
+    return shader; // Retorna el shader compilado
   }
 
-  const vertexShader = compileShader(gl, vsSource, gl.VERTEX_SHADER);
-  const fragmentShader = compileShader(gl, fsSource, gl.FRAGMENT_SHADER);
+  const vertexShader = compileShader(gl, vsSource, gl.VERTEX_SHADER); // Compila el shader de vértices
+  const fragmentShader = compileShader(gl, fsSource, gl.FRAGMENT_SHADER); // Compila el shader de fragmentos
 
-  const shaderProgram = gl.createProgram();
-  gl.attachShader(shaderProgram, vertexShader);
-  gl.attachShader(shaderProgram, fragmentShader);
-  gl.linkProgram(shaderProgram);
+  const shaderProgram = gl.createProgram(); // Crea un nuevo programa de shaders
+  gl.attachShader(shaderProgram, vertexShader); // Adjunta el shader de vértices al programa
+  gl.attachShader(shaderProgram, fragmentShader); // Adjunta el shader de fragmentos al programa
+  gl.linkProgram(shaderProgram); // Enlaza los shaders al programa
 
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+    // Verifica si la unión de shaders fue exitosa
     console.error(
+      // Si hubo un error en la unión de shaders, muestra un mensaje de error
       "Unable to initialize the shader program: " +
         gl.getProgramInfoLog(shaderProgram)
     );
-    return null;
+    return null; // Retorna null para indicar que hubo un error
   }
 
-  gl.useProgram(shaderProgram);
+  gl.useProgram(shaderProgram); // Usa el programa de shaders para renderizar
 
   // definimos la posicion de los vertices del cuadrado
   const vertices = [-0.3, 0.3, -0.3, -0.3, 0.3, 0.3, 0.3, -0.3];
 
-  const positionBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+  // Crea y llena el búfer de datos con los vértices del círculo
+  const positionBuffer = gl.createBuffer(); // Crea un nuevo búfer de datos
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer); // Establece el búfer como el búfer de posiciones
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW); // Llena el búfer con los vértices del círculo
 
-    //Obtenemos la ubicación del atributo de posición en el shader de vértices
+  // Configura los atributos de posición
   const positionAttributeLocation = gl.getAttribLocation(
     shaderProgram,
     "aPosition"
-  );
-  gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-  gl.enableVertexAttribArray(positionAttributeLocation);
+  ); // Obtiene la ubicación del atributo de posición en los shaders
+  gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0); // Configura el atributo de posición para que lea datos del búfer
+  gl.enableVertexAttribArray(positionAttributeLocation); // Habilita el atributo de posición para su uso en los shaders
 
-  gl.clearColor(9 / 255, 34 / 255, 172 / 255, 1.0); // Le ponemos un color azul al bg del canva
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  // Limpia el lienzo y dibuja el círculo
+  gl.clearColor(9 / 255, 34 / 255, 172 / 255, 1.0); // Establece el color de fondo del lienzo (azul)
+  gl.clear(gl.COLOR_BUFFER_BIT); // Limpia el lienzo con el color de fondo establecido
+   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 };
