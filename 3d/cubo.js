@@ -1,5 +1,5 @@
 window.onload = function () {
-  var canvas = document.getElementById("canvas");
+  var canvas = document.getElementById("canvas-3d");
   var gl = canvas.getContext("webgl");
 
   if (!gl) {
@@ -175,7 +175,7 @@ window.onload = function () {
     mat4.rotateY(modelViewMatrix, modelViewMatrix, angle); // Rotación sobre el eje Y
 
     gl.uniformMatrix4fv(modelViewMatrixLocation, false, modelViewMatrix);
-    gl.clearColor(9 / 255, 34 / 255, 172 / 255, 1.0); // Establece el color de fondo del lienzo (azul)
+    gl.clearColor(76 / 255, 37 / 255, 124 / 255, 1.0); // Establece el color de fondo del lienzo (morado)
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.enable(gl.DEPTH_TEST);
     gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);

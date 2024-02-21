@@ -4,27 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tarea 2</title>
-    <style>
-      body {
-        background-color: rgb(9, 34, 172);
-        margin: 0;
-        overflow: hidden;
-      }
-      #canvas {
-        width: 50%;
-        height: 50%;
-        display: block;
-      }
-    </style>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/app.css">
   </head>
+
+  <main class="contenido">
+    <h1 class="contenido__header">Tarea 2 - Figuras 2D y 3D con WebGL</h1>
+    <div class="contenido__grid">
+      <article class="contenido__figura">
+        <h2 class="contenido__titulo">Círculo</h2>
+        <a href="circulo.html" class="contenido__enlace">Ver Ejemplo</a>
+      </article>
+      <article class="contenido__figura">
+        <h2 class="contenido__titulo">Triangulo</h2>
+        <a href="triangulo.html" class="contenido__enlace">Ver Ejemplo</a>
+      </article>
+      <article class="contenido__figura">
+        <h2 class="contenido__titulo">Cuadrado</h2>
+        <a href="cuadrado.html" class="contenido__enlace">Ver Ejemplo</a>
+      </article>
+      <article class="contenido__figura">
+        <h2 class="contenido__titulo">Esfera</h2>
+        <a href="esfera.html" class="contenido__enlace">Ver Ejemplo</a>
+      </article>
+      <article class="contenido__figura">
+        <h2 class="contenido__titulo">Tetaedro</h2>
+        <a href="tetaedro.html" class="contenido__enlace">Ver Ejemplo</a>
+      </article>
+      <article class="contenido__figura">
+        <h2 class="contenido__titulo">Cubo</h2>
+        <a href="cubo.html" class="contenido__enlace">Ver Ejemplo</a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">&copy; Alumno: Omar Fernando Solís Carvajal</p>
+  </footer>
   <body>
-    <canvas id="canvas"></canvas>
-    <!-- <script src="2d/cuadrado.js"></script> -->
-    <!-- <script src="2d/triangulo.js"></script> -->
-    <!-- <script src="2d/circulo.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
-    <!-- <script src="3d/cubo.js"></script> -->
-    <!-- <script src="3d/tetaedro.js"></script> -->
-    <script src="3d/esfera.js"></script>
-  </body>
 </html>

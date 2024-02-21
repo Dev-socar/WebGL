@@ -1,6 +1,6 @@
 window.onload = function () {
   // Espera a que se cargue la ventana para ejecutar este código
-  const canvas = document.getElementById("canvas"); // Obtiene el elemento canvas del documento HTML
+  const canvas = document.getElementById("canvas-2d"); // Obtiene el elemento canvas del documento HTML
   const gl = canvas.getContext("webgl"); // Obtiene el contexto de renderizado WebGL del canvas
 
   if (!gl) {
@@ -87,7 +87,7 @@ window.onload = function () {
   gl.enableVertexAttribArray(positionAttributeLocation); // Habilita el atributo de posición para su uso en los shaders
 
   // Limpia el lienzo y dibuja el círculo
-  gl.clearColor(9 / 255, 34 / 255, 172 / 255, 1.0); // Establece el color de fondo del lienzo (azul)
+  gl.clearColor(76 / 255, 37 / 255, 124 / 255, 1.0); // Establece el color de fondo del lienzo (morado)
   gl.clear(gl.COLOR_BUFFER_BIT); // Limpia el lienzo con el color de fondo establecido
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 };

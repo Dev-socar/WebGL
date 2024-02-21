@@ -1,14 +1,12 @@
 window.onload = function () {
-  var canvas = document.getElementById("canvas");
+  var canvas = document.getElementById("canvas-3d");
   var gl = canvas.getContext("webgl");
-
   if (!gl) {
     console.error(
       "Unable to initialize WebGL. Your browser may not support it."
     );
     return;
   }
-
   var vertices = [];
   var colors = [];
 
@@ -120,7 +118,7 @@ window.onload = function () {
     mat4.rotateY(modelViewMatrix, modelViewMatrix, angle); // Rotación sobre el eje Y
 
     gl.uniformMatrix4fv(modelViewMatrixLocation, false, modelViewMatrix);
-    gl.clearColor(9 / 255, 34 / 255, 172 / 255, 1.0); // Establece el color de fondo del lienzo (azul)
+    gl.clearColor(76 / 255, 37 / 255, 124 / 255, 1.0); // Establece el color de fondo del lienzo (morado)
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, vertices.length / 3);
     requestAnimationFrame(render);
