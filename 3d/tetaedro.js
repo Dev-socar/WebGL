@@ -13,24 +13,24 @@ window.onload = function () {
     // Cara 1 (azul)
     0.0,
     1.0,
-    0.0, // Top vertex
+    0.0, //Vertice superior
     -1.0,
     -1.0,
-    1.0, // Front-left vertex
+    1.0, //Vértice frontal izquierdo
     1.0,
     -1.0,
-    1.0, // Front-right vertex
+    1.0, //Vértice frontal derecho
 
     // Cara 2 (amarilla)
     0.0,
     1.0,
-    0.0, // Top vertex
+    0.0, //Vertice superior
     1.0,
     -1.0,
-    1.0, // Front-right vertex
+    1.0, //Vértice frontal derecho
     0.0,
     -1.0,
-    -1.0, // Back vertex
+    -1.0, // Vértice posterior
 
     // Cara 3 (roja)
     0.0,
@@ -38,67 +38,67 @@ window.onload = function () {
     0.0, // Top vertex
     0.0,
     -1.0,
-    -1.0, // Back vertex
+    -1.0, // Vertice posterior
     -1.0,
     -1.0,
-    1.0, // Front-left vertex
+    1.0, // Vertice frontal izquierdo
 
     // Cara 4 (negra)
     -1.0,
     -1.0,
-    1.0, // Front-left vertex
+    1.0, // Vertice frontal izquierdo
     1.0,
     -1.0,
-    1.0, // Front-right vertex
+    1.0, // Vértice frontal derecho
     0.0,
     -1.0,
-    -1.0, // Back vertex
+    -1.0, // Vértice posterior
   ];
 
   var colors = [
     // Cara 1 (azul)
     0.0,
     0.0,
-    1.0, // Top vertex
+    1.0, // vertice superior
     0.0,
     0.0,
-    1.0, // Front-left vertex
+    1.0, // Vértice frontal izquierdo
     0.0,
     0.0,
-    1.0, // Front-right vertex
+    1.0, // Vértice frontal derecho
 
     // Cara 2 (amarilla)
     1.0,
     1.0,
-    0.0, // Top vertex
+    0.0, // vertice superior
     1.0,
     1.0,
-    0.0, // Front-right vertex
+    0.0, // Vértice frontal derecho
     1.0,
     1.0,
-    0.0, // Back vertex
+    0.0, // vertice posterior
 
     // Cara 3 (roja)
     1.0,
     0.0,
-    0.0, // Top vertex
+    0.0, // vertice superior
     1.0,
     0.0,
-    0.0, // Back vertex
+    0.0, // vertice posterior
     1.0,
     0.0,
-    0.0, // Front-left vertex
+    0.0, // Vértice frontal izquierdo
 
     // Cara 4 (negra)
     0.0,
     0.0,
-    0.0, // Front-left vertex
+    0.0, // Vértice frontal izquierdo
     0.0,
     0.0,
-    0.0, // Front-right vertex
+    0.0, // Vértice frontal derecho
     0.0,
     0.0,
-    0.0, // Back vertex
+    0.0, // vertice posterior
   ];
 
   var vertexBuffer = gl.createBuffer();

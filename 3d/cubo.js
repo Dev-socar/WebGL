@@ -1,6 +1,5 @@
 window.onload = function () {
   // Se ejecuta cuando la ventana y todos sus elementos se han cargado completamente
-
   var canvas = document.getElementById("canvas-3d");
   // Obtiene el elemento canvas con el ID "canvas-3d" del documento HTML
 
@@ -43,42 +42,12 @@ window.onload = function () {
 
   // Definición de índices para cada cara del cubo
   var indices = [
-    0,
-    1,
-    2,
-    0,
-    2,
-    3, // Cara frontal
-    4,
-    5,
-    6,
-    4,
-    6,
-    7, // Cara trasera
-    8,
-    9,
-    10,
-    8,
-    10,
-    11, // Cara superior
-    12,
-    13,
-    14,
-    12,
-    14,
-    15, // Cara inferior
-    16,
-    17,
-    18,
-    16,
-    18,
-    19, // Cara derecha
-    20,
-    21,
-    22,
-    20,
-    22,
-    23, // Cara izquierda
+    0,1,2,0,2,3, // Cara frontal
+    4,5,6,4,6,7, // Cara trasera
+    8,9,10,8,10,11, // Cara superior
+    12,13,14,12,14,15, // Cara inferior
+    16,17,18,16,18,19, // Cara derecha
+    20,21,22,20,22,23, // Cara izquierda
   ];
 
   // Creación de un buffer para los vértices del cubo
