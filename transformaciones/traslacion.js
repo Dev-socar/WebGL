@@ -67,7 +67,6 @@ function setTransformMatrix(matrix) {
 function createTranslationMatrix(tx, ty) {
   return [1, 0, 0, 0, 1, 0, tx, ty, 1];
 }
-
 // Variables para la animación
 let translationX = -0.5;
 let translationY = 0.0;
@@ -92,7 +91,7 @@ function animate() {
 }
 
 // Limpiar el canvas
-gl.clearColor(0.0, 0.0, 0.0, 1.0);
+gl.clearColor(76 / 255, 37 / 255, 124 / 255, 1.0);
 gl.clear(gl.COLOR_BUFFER_BIT);
 
 // Iniciar la animación

@@ -44,16 +44,17 @@ window.onload = function () {
     }
   }
 
+  // Crea y llena un buffer con los datos de los vértices
   var vertexBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-  // Crea y llena un buffer con los datos de los vértices
 
+  // Crea y llena un buffer con los datos de los colores
   var colorBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
-  // Crea y llena un buffer con los datos de los colores
 
+  // Código fuente del shader de vértices
   var vertexShaderSource = `
             attribute vec3 position;
             attribute vec3 color;
@@ -65,13 +66,13 @@ window.onload = function () {
                 vColor = color;
             }
         `;
-  // Código fuente del shader de vértices
 
+  // Compilación del shader de vértices
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
   gl.shaderSource(vertexShader, vertexShaderSource);
   gl.compileShader(vertexShader);
-  // Compilación del shader de vértices
 
+  // Código fuente del shader de fragmentos
   var fragmentShaderSource = `
             precision mediump float;
             varying vec3 vColor;
@@ -80,19 +81,18 @@ window.onload = function () {
                 gl_FragColor = vec4(vColor * overlayColor, 1.0);
             }
         `;
-  // Código fuente del shader de fragmentos
 
+  // Compilación del shader de fragmentos
   var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
   gl.shaderSource(fragmentShader, fragmentShaderSource);
   gl.compileShader(fragmentShader);
-  // Compilación del shader de fragmentos
 
+  // Creación y configuración del programa de shaders
   var shaderProgram = gl.createProgram();
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
   gl.useProgram(shaderProgram);
-  // Creación y configuración del programa de shaders
 
   var positionAttributeLocation = gl.getAttribLocation(
     shaderProgram,
@@ -102,12 +102,13 @@ window.onload = function () {
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);
 
+  // Configuración de los atributos de posición y color
   var colorAttributeLocation = gl.getAttribLocation(shaderProgram, "color");
   gl.enableVertexAttribArray(colorAttributeLocation);
   gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
   gl.vertexAttribPointer(colorAttributeLocation, 3, gl.FLOAT, false, 0, 0);
-  // Configuración de los atributos de posición y color
 
+  // Obtención de las ubicaciones de las matrices de modelo-vista y proyección
   var modelViewMatrixLocation = gl.getUniformLocation(
     shaderProgram,
     "modelViewMatrix"
@@ -116,8 +117,8 @@ window.onload = function () {
     shaderProgram,
     "projectionMatrix"
   );
-  // Obtención de las ubicaciones de las matrices de modelo-vista y proyección
 
+  // Definición de la matriz de proyección y envío al shader
   var projectionMatrix = mat4.create();
   mat4.perspective(
     projectionMatrix,
@@ -127,7 +128,6 @@ window.onload = function () {
     100.0
   );
   gl.uniformMatrix4fv(projectionMatrixLocation, false, projectionMatrix);
-  // Definición de la matriz de proyección y envío al shader
 
   var modelViewMatrix = mat4.create();
 
